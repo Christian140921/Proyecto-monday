@@ -1,0 +1,58 @@
+[
+  {
+    "id": "11056369807",
+    "nombre": "Actualización de Servidores",
+    "estado": "En Progreso",
+    "categoria": "Hardware, Software",
+    "costo": 15000,
+    "fecha": "2026-02-01"
+  },
+  {
+    "id": "11056374688",
+    "nombre": "Auditoría de Sistemas",
+    "estado": "Completado",
+    "categoria": null,
+    "costo": 8000,
+    "fecha": "2026-01-30"
+  },
+  {
+    "id": "11056370236",
+    "nombre": "Capacitación en Soporte Técnico",
+    "estado": "Atascado",
+    "categoria": "Soporte",
+    "costo": 3000,
+    "fecha": "2026-02-25"
+  },
+  {
+    "id": "11056374701",
+    "nombre": "Instalación de Firewall",
+    "estado": "Completado",
+    "categoria": "Redes, Soporte",
+    "costo": 5000,
+    "fecha": "2026-02-15"
+  },
+  {
+    "id": "11056377230",
+    "nombre": "Implementación de Software de Gestión",
+    "estado": "No Comenzado",
+    "categoria": "Software",
+    "costo": 25000,
+    "fecha": "2026-03-10"
+  },
+  {
+    "id": "11066701267",
+    "nombre": "Prueba de Integración de Red",
+    "estado": "En Progreso",
+    "categoria": "Infraestructura",
+    "costo": 1000,
+    "fecha": "2026-01-21"
+  },
+  {
+    "id": "11066737054",
+    "nombre": "Simulación de Respaldo de Datos",
+    "estado": "No Comenzado",
+    "categoria": "Seguridad",
+    "costo": 750,
+    "fecha": "2026-01-21"
+  }
+]
