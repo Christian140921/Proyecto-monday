@@ -72,11 +72,11 @@
     "fecha": "2026-01-26"
   },
   {
-    "id": "11101597727",
-    "nombre": "Optimización de Base de Datos",
-    "estado": "En Progreso",
-    "categoria": "Infraestructura",
-    "costo": 1300,
+    "id": "11103854638",
+    "nombre": "Integración de Servicios en la Nube",
+    "estado": "No Comenzado",
+    "categoria": "Innovación",
+    "costo": 2000,
     "fecha": "2026-01-26"
   }
 ]
