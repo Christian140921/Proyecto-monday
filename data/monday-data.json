@@ -62,5 +62,21 @@
     "categoria": "Infraestructura",
     "costo": 500,
     "fecha": "2026-01-21"
+  },
+  {
+    "id": "11099989825",
+    "nombre": "Evaluación de Seguridad de Red",
+    "estado": "Atascado",
+    "categoria": "Seguridad",
+    "costo": 1200,
+    "fecha": "2026-01-26"
+  },
+  {
+    "id": "11100503936",
+    "nombre": "Auditoría de Sistemas",
+    "estado": "Completado",
+    "categoria": "Infraestructura",
+    "costo": 900,
+    "fecha": "2026-01-26"
   }
 ]
