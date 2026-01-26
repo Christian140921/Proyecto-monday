@@ -81,21 +81,21 @@ fecha: 2026-01-21
 ------------------
 
 Registro 9
-id: 11099989825
-nombre: Evaluación de Seguridad de Red
-estado: Atascado
-categoria: Seguridad
-costo: 1200
-fecha: 2026-01-26
-
-------------------
-
-Registro 10
 id: 11100503936
 nombre: Auditoría de Sistemas
 estado: Completado
 categoria: Infraestructura
 costo: 900
+fecha: 2026-01-26
+
+------------------
+
+Registro 10
+id: 11101597727
+nombre: Optimización de Base de Datos
+estado: En Progreso
+categoria: Infraestructura
+costo: 1300
 fecha: 2026-01-26
 
 ------------------
