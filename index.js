@@ -1,6 +1,6 @@
 const { getMondayData } = require('./monday.service');
-const { saveJsonToFile } = require('./file.util');
-const { savePlainText } = require('./text.util');
+const { saveJsonToFile } = require('./utils/file.util');
+const { savePlainText } = require('./utils/text.util');
 
 
 async function main() {
