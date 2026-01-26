@@ -54,5 +54,13 @@
     "categoria": "Seguridad",
     "costo": 750,
     "fecha": "2026-01-21"
+  },
+  {
+    "id": "11066795454",
+    "nombre": "Monitoreo de Consumo Energético",
+    "estado": "En Progreso",
+    "categoria": "Infraestructura",
+    "costo": 500,
+    "fecha": "2026-01-21"
   }
 ]
