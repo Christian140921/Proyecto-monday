@@ -4,7 +4,7 @@
     "nombre": "Actualización de Servidores",
     "estado": "En Progreso",
     "categoria": "Hardware, Software",
-    "costo": 15000,
+    "costo": "15000",
     "fecha": "2026-02-01",
     "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056369807"
   },
@@ -12,8 +12,8 @@
     "id": "11056374688",
     "nombre": "Auditoría de Sistemas",
     "estado": "Completado",
-    "categoria": null,
-    "costo": 8000,
+    "categoria": "null",
+    "costo": "8000",
     "fecha": "2026-01-30",
     "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374688"
   },
@@ -22,7 +22,7 @@
     "nombre": "Capacitación en Soporte Técnico",
     "estado": "Atascado",
     "categoria": "Soporte",
-    "costo": 3000,
+    "costo": "3000",
     "fecha": "2026-02-25",
     "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056370236"
   },
@@ -31,7 +31,7 @@
     "nombre": "Instalación de Firewall",
     "estado": "Completado",
     "categoria": "Redes, Soporte",
-    "costo": 5000,
+    "costo": "5000",
     "fecha": "2026-02-15",
     "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374701"
   },
@@ -40,7 +40,7 @@
     "nombre": "Implementación de Software de Gestión",
     "estado": "No Comenzado",
     "categoria": "Software",
-    "costo": 25000,
+    "costo": "25000",
     "fecha": "2026-03-10",
     "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056377230"
   },
@@ -49,16 +49,16 @@
     "nombre": "Prueba de Integración de Red",
     "estado": "En Progreso",
     "categoria": "Infraestructura",
-    "costo": 1000,
+    "costo": "1000",
     "fecha": "2026-01-21",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267"
+    "url": "ttps://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267"
   },
   {
     "id": "11066737054",
     "nombre": "Simulación de Respaldo de Datos",
     "estado": "No Comenzado",
     "categoria": "Seguridad",
-    "costo": 750,
+    "costo": "750",
     "fecha": "2026-01-21",
     "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066737054"
   },
@@ -67,7 +67,7 @@
     "nombre": "Monitoreo de Consumo Energético",
     "estado": "En Progreso",
     "categoria": "Infraestructura",
-    "costo": 500,
+    "costo": "500",
     "fecha": "2026-01-21",
     "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066795454"
   },
@@ -76,17 +76,17 @@
     "nombre": "Auditoría de Sistemas",
     "estado": "Completado",
     "categoria": "Infraestructura",
-    "costo": 900,
+    "costo": "900",
     "fecha": "2026-01-26",
     "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11100503936"
   },
   {
-    "id": "11104959657",
-    "nombre": "Desarrollo de Aplicación Móvil Interna",
-    "estado": "En Progreso",
+    "id": "11103854638",
+    "nombre": "Integración de Servicios en la Nube",
+    "estado": "No Comenzado",
     "categoria": "Innovación",
-    "costo": 2500,
+    "costo": "2000",
     "fecha": "2026-01-26",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11104959657"
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11103854638"
   }
 ]

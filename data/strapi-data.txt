@@ -62,7 +62,7 @@ estado: En Progreso
 categoria: Infraestructura
 costo: 1000
 fecha: 2026-01-21
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267
+url: ttps://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267
 
 ------------------
 
@@ -100,13 +100,13 @@ url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/puls
 ------------------
 
 Registro 10
-id: 11104959657
-nombre: Desarrollo de Aplicación Móvil Interna
-estado: En Progreso
+id: 11103854638
+nombre: Integración de Servicios en la Nube
+estado: No Comenzado
 categoria: Innovación
-costo: 2500
+costo: 2000
 fecha: 2026-01-26
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11104959657
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11103854638
 
 ------------------
 
