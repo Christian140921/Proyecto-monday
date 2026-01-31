@@ -26,16 +26,21 @@ async function main() {
       url: buildMondayItemUrl({ company, boardId, itemId: String(item.id) }),
     }));
 
-    const strapiItemsRaw = await getActivosDigitalesFromStrapi();
-    const strapiItems = strapiItemsRaw
-      .filter((item) => item && item.id)
-      .map((item) => ({
-        ...item,
-        id: String(item.id),
-        url:
-          item.url ||
-          buildMondayItemUrl({ company, boardId, itemId: String(item.id) }),
-      }));
+    let strapiItems = [];
+    try {
+      const strapiItemsRaw = await getActivosDigitalesFromStrapi();
+      strapiItems = strapiItemsRaw
+        .filter((item) => item && item.id)
+        .map((item) => ({
+          ...item,
+          id: String(item.id),
+          url:
+            item.url ||
+            buildMondayItemUrl({ company, boardId, itemId: String(item.id) }),
+        }));
+    } catch (error) {
+      console.warn(`Aviso: se omitió Strapi: ${error.message}`);
+    }
 
     saveJsonToFile('data/monday-data.json', mondayItems);
     savePlainText('data/monday-data.txt', mondayItems);
@@ -46,7 +51,7 @@ async function main() {
     saveJsonToFile('data/monday-urls.json', pickUrlList(mondayItems));
     saveJsonToFile('data/strapi-urls.json', pickUrlList(strapiItems));
 
-    console.log('Archivos generados correctamente (Monday y Strapi)');
+    console.log('Archivos generados correctamente (Monday; Strapi si está disponible)');
   } catch (error) {
     console.error('Error:', error.message);
   }

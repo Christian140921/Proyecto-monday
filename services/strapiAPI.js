@@ -1,6 +1,17 @@
 async function getActivosDigitalesFromStrapi() {
-  const endpoint = 'http://localhost:1337/api/activo-digital?pagination%5BpageSize%5D=100';
-  const response = await fetch(endpoint);
+  const baseUrl = (process.env.STRAPI_BASE_URL || 'http://localhost:1337').replace(/\/$/, '');
+  const endpoint = `${baseUrl}/api/activo-digital?pagination%5BpageSize%5D=100`;
+
+  let response;
+  try {
+    response = await fetch(endpoint);
+  } catch (error) {
+    throw new Error(
+      `No se pudo conectar con Strapi en ${baseUrl}. ` +
+        'Asegúrate de que Strapi esté corriendo y accesible (por defecto http://localhost:1337), ' +
+        'o configura STRAPI_BASE_URL.'
+    );
+  }
 
   if (!response.ok) {
     throw new Error(`Error al obtener datos desde Strapi (HTTP ${response.status})`);
