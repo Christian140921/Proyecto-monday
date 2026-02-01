@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+.env
+.env.local
+.git
+.gitignore
+*.md
+strapi/node_modules
+strapi/.tmp
+strapi/.cache
+strapi/dist
+strapi/.env

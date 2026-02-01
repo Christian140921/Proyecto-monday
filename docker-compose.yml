@@ -1,0 +1,66 @@
+services:
+  # Tu aplicación Node.js
+  app:
+    build: .
+    container_name: monday-app
+    ports:
+      - "3000:3000"
+    environment:
+      - MONDAY_DATA_URL=http://n8n:5678/webhook/monday-data
+      - STRAPI_BASE_URL=http://strapi:1337
+      - STRAPI_ACTIVO_DIGITAL_PATH=/api/activo-digital
+      - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+      - STRAPI_SYNC=${STRAPI_SYNC:-true}
+      - STRAPI_SYNC_DELETE=${STRAPI_SYNC_DELETE:-false}
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - n8n
+      - strapi
+    networks:
+      - monday-network
+
+  # n8n - Automatización de workflows
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: monday-n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=false
+      - N8N_HOST=0.0.0.0
+      - WEBHOOK_URL=http://n8n:5678/
+      - GENERIC_TIMEZONE=America/Bogota
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - monday-network
+
+  # Strapi CMS
+  strapi:
+    build: ./strapi
+    container_name: monday-strapi
+    ports:
+      - "1337:1337"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=1337
+      - APP_KEYS=${STRAPI_APP_KEYS:-key1,key2,key3,key4}
+      - API_TOKEN_SALT=${STRAPI_API_TOKEN_SALT:-randomsalt123}
+      - ADMIN_JWT_SECRET=${STRAPI_ADMIN_JWT_SECRET:-adminjwtsecret}
+      - TRANSFER_TOKEN_SALT=${STRAPI_TRANSFER_TOKEN_SALT:-transfersalt}
+      - JWT_SECRET=${STRAPI_JWT_SECRET:-jwtsecret123}
+      - DATABASE_CLIENT=sqlite
+      - DATABASE_FILENAME=.tmp/data.db
+    volumes:
+      - ./strapi/.tmp:/app/.tmp
+      - ./strapi/public/uploads:/app/public/uploads
+    networks:
+      - monday-network
+
+networks:
+  monday-network:
+    driver: bridge
+
+volumes:
+  n8n_data:
