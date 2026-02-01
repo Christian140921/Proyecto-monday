@@ -4,71 +4,129 @@
     "nombre": "Actualización de Servidores",
     "estado": "En Progreso",
     "categoria": "Hardware, Software",
-    "costo": 15000,
-    "fecha": "2026-02-01",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056369807"
+    "costo": "15000",
+    "fecha": "2026-01-02",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056369807",
+    "__documentId": "ew9zc09927czji1v6ihg287e"
   },
   {
     "id": "11056374688",
     "nombre": "Auditoría de Sistemas",
     "estado": "Completado",
-    "categoria": null,
-    "costo": 8000,
+    "categoria": "null",
+    "costo": "8000",
     "fecha": "2026-01-30",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374688"
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374688",
+    "__documentId": "jbwmy2s3bxtk0pxx4h5zjpzt"
   },
   {
     "id": "11056370236",
     "nombre": "Capacitación en Soporte Técnico",
     "estado": "Atascado",
     "categoria": "Soporte",
-    "costo": 3000,
+    "costo": "3000",
     "fecha": "2026-02-25",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056370236"
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056370236",
+    "__documentId": "feun11wh4h226kh99n3n3s14"
   },
   {
     "id": "11056374701",
     "nombre": "Instalación de Firewall",
     "estado": "Completado",
     "categoria": "Redes, Soporte",
-    "costo": 5000,
+    "costo": "5000",
     "fecha": "2026-02-15",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374701"
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374701",
+    "__documentId": "yrath2tkxf5z0qzhygg19ajh"
   },
   {
     "id": "11056377230",
     "nombre": "Implementación de Software de Gestión",
     "estado": "No Comenzado",
-    "categoria": "Software",
-    "costo": 25000,
+    "categoria": " Software",
+    "costo": "25000",
     "fecha": "2026-03-10",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056377230"
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056377230",
+    "__documentId": "qgvl6ohyyb58tbt1gpwp4epd"
   },
   {
     "id": "11066701267",
     "nombre": "Prueba de Integración de Red",
     "estado": "En Progreso",
     "categoria": "Infraestructura",
-    "costo": 1000,
+    "costo": "1000",
     "fecha": "2026-01-21",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267"
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267",
+    "__documentId": "nicrto1clh55ub3gefkxv7sk"
+  },
+  {
+    "id": "11066795454",
+    "nombre": "Monitoreo de Consumo Energético",
+    "estado": "En Progreso",
+    "categoria": "Infraestructura",
+    "costo": "500",
+    "fecha": "2026-01-21",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066795454",
+    "__documentId": "rtmyoi02nh9v57b5g7kjh3s8"
+  },
+  {
+    "id": "test",
+    "nombre": "Test",
+    "estado": null,
+    "categoria": null,
+    "costo": null,
+    "fecha": null,
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/test",
+    "__documentId": "yxewzlc4rmwygxxev8hri8hx"
   },
   {
     "id": "11066737054",
     "nombre": "Simulación de Respaldo de Datos",
     "estado": "No Comenzado",
     "categoria": "Seguridad",
-    "costo": 750,
+    "costo": "750",
     "fecha": "2026-01-21",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066737054"
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066737054",
+    "__documentId": "o12vs7dbkonzwmgm0xhajeeg"
+  },
+  {
+    "id": "11152089892",
+    "nombre": "Migración a Infraestructura Híbrida",
+    "estado": "En Progreso",
+    "categoria": "Infraestructura",
+    "costo": "3000",
+    "fecha": "2026-01-31",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11152089892",
+    "__documentId": "s3iqtpmorhbion7cpps5kng1"
+  },
+  {
+    "id": "11152119692",
+    "nombre": "Implementación de Control de Acceso Biométrico",
+    "estado": "No Comenzado",
+    "categoria": "Seguridad",
+    "costo": "2200",
+    "fecha": "2026-01-31",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11152119692",
+    "__documentId": "mnsccu9zqemr37gugzmegvxp"
   },
   {
     "id": "11154630310",
     "nombre": "Instalación de Firewall",
     "estado": "En Progreso",
     "categoria": "Seguridad",
-    "costo": 2100,
+    "costo": "2100",
     "fecha": "2026-02-01",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11154630310"
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11154630310",
+    "__documentId": "s0fo0n315hml8c590qs73snf"
+  },
+  {
+    "id": "11154737280",
+    "nombre": "Evaluación de Desempeño de Equipos",
+    "estado": "No Comenzado",
+    "categoria": "Gestión",
+    "costo": "600",
+    "fecha": "2026-02-01",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11154737280",
+    "__documentId": "av497t1h3pnce46g33znpjj2"
   }
 ]

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { getMondayData } = require('./services/mondayAPI');
 const { getActivosDigitalesFromStrapi, upsertActivosDigitalesToStrapi } = require('./services/strapiAPI');
 const { saveJsonToFile } = require('./utils/guardarJSON');

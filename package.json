@@ -7,6 +7,7 @@
     "start": "node server.js",
     "dev": "node server.js",
     "fetch": "node index.js",
+    "sync:strapi": "node index.js",
     "strapi:develop": "npm --prefix strapi run develop",
     "strapi:start": "npm --prefix strapi start",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +17,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^5.2.1"
   }
 }

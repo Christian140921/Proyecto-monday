@@ -88,3 +88,14 @@ url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/puls
 
 ------------------
 
+Registro 9
+id: 11154737280
+nombre: Evaluación de Desempeño de Equipos
+estado: No Comenzado
+categoria: Gestión
+costo: 600
+fecha: 2026-02-01
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11154737280
+
+------------------
+
