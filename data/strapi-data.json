@@ -1,1 +1,65 @@
-[]
+[
+  {
+    "id": "11056369807",
+    "nombre": "Actualización de Servidores",
+    "estado": "En Progreso",
+    "categoria": "Hardware, Software",
+    "costo": "15000",
+    "fecha": "2026-01-02",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056369807"
+  },
+  {
+    "id": "11056374688",
+    "nombre": "Auditoría de Sistemas",
+    "estado": "Completado",
+    "categoria": "null",
+    "costo": "8000",
+    "fecha": "2026-01-30",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374688"
+  },
+  {
+    "id": "11056370236",
+    "nombre": "Capacitación en Soporte Técnico",
+    "estado": "Atascado",
+    "categoria": "Soporte",
+    "costo": "3000",
+    "fecha": "2026-02-25",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056370236"
+  },
+  {
+    "id": "11056374701",
+    "nombre": "Instalación de Firewall",
+    "estado": "Completado",
+    "categoria": "Redes, Soporte",
+    "costo": "5000",
+    "fecha": "2026-02-15",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374701"
+  },
+  {
+    "id": "11056377230",
+    "nombre": "Implementación de Software de Gestión",
+    "estado": "No Comenzado",
+    "categoria": " Software",
+    "costo": "25000",
+    "fecha": "2026-03-10",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056377230"
+  },
+  {
+    "id": "11066701267",
+    "nombre": "Prueba de Integración de Red",
+    "estado": "En Progreso",
+    "categoria": "Infraestructura",
+    "costo": "1000",
+    "fecha": "2026-01-21",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267"
+  },
+  {
+    "id": "11066795454",
+    "nombre": "Monitoreo de Consumo Energético",
+    "estado": "En Progreso",
+    "categoria": "Infraestructura",
+    "costo": "500",
+    "fecha": "2026-01-21",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066795454"
+  }
+]

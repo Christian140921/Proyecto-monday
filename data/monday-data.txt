@@ -88,14 +88,3 @@ url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/puls
 
 ------------------
 
-Registro 9
-id: 11150941458
-nombre: Automatización de Procesos Administrativos
-estado: En Progreso
-categoria: Innovación
-costo: 1700
-fecha: 2026-01-31
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11150941458
-
-------------------
-

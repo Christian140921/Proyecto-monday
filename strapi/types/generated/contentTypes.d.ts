@@ -467,6 +467,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiActivosDigitalesActivosDigitales
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'activo_digital';
+  info: {
+    displayName: 'Activos digitales';
+    pluralName: 'activo-digital';
+    singularName: 'activos-digitales';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Categoria: Schema.Attribute.String;
+    Costo: Schema.Attribute.BigInteger;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Estado: Schema.Attribute.String;
+    Fecha: Schema.Attribute.Date;
+    id_monday: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::activos-digitales.activos-digitales'
+    > &
+      Schema.Attribute.Private;
+    Nombre: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    URL: Schema.Attribute.String;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -978,6 +1013,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::activos-digitales.activos-digitales': ApiActivosDigitalesActivosDigitales;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -48,17 +48,17 @@ async function getActivosDigitalesFromStrapi() {
   return rows.map((row) => {
     const source = row && typeof row === 'object' ? row.attributes || row : {};
 
-    const idFromMonday = source.id_monday ?? source.idMonday;
+    const idFromMonday = source.id_monday ?? source.idMonday ?? source.id_lunes ?? source.idLunes;
     const idFallback = row && row.id != null ? row.id : source.id;
 
     return {
       id: idFromMonday != null ? String(idFromMonday) : idFallback != null ? String(idFallback) : undefined,
-      nombre: source.nombre ?? null,
-      estado: source.estado ?? null,
-      categoria: source.categoria ?? null,
-      costo: source.costo ?? null,
-      fecha: source.fecha ?? null,
-      url: source.url ?? null,
+      nombre: source.nombre ?? source.Nombre ?? null,
+      estado: source.estado ?? source.Estado ?? null,
+      categoria: source.categoria ?? source.Categoria ?? null,
+      costo: source.costo ?? source.Costo ?? null,
+      fecha: source.fecha ?? source.Fecha ?? null,
+      url: source.url ?? source.URL ?? null,
     };
   });
 }

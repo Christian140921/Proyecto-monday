@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "activo_digital",
+  "info": {
+    "singularName": "activos-digitales",
+    "pluralName": "activo-digital",
+    "displayName": "Activos digitales"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "id_monday": {
+      "type": "string"
+    },
+    "Nombre": {
+      "type": "string"
+    },
+    "Estado": {
+      "type": "string"
+    },
+    "Categoria": {
+      "type": "string"
+    },
+    "Costo": {
+      "type": "biginteger"
+    },
+    "Fecha": {
+      "type": "date"
+    },
+    "URL": {
+      "type": "string"
+    }
+  }
+}

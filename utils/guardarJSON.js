@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 function saveJsonToFile(filePath, data) {
-  const fullPath = path.resolve(filePath);
+  const projectRoot = path.resolve(__dirname, '..');
+  const fullPath = path.resolve(projectRoot, filePath);
   fs.writeFileSync(fullPath, JSON.stringify(data, null, 2), 'utf-8');
 }
 
