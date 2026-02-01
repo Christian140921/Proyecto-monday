@@ -43,10 +43,10 @@ async function main() {
     }
 
     saveJsonToFile('data/monday-data.json', mondayItems);
-    savePlainText('data/monday-data.txt', mondayItems, { title: 'DATOS DE MONDAY' });
+    savePlainText('data/monday-data.txt', mondayItems);
 
     saveJsonToFile('data/strapi-data.json', strapiItems);
-    savePlainText('data/strapi-data.txt', strapiItems, { title: 'DATOS DE STRAPI' });
+    savePlainText('data/strapi-data.txt', strapiItems);
 
     saveJsonToFile('data/monday-urls.json', pickUrlList(mondayItems));
     saveJsonToFile('data/strapi-urls.json', pickUrlList(strapiItems));
