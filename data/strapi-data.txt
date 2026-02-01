@@ -156,3 +156,15 @@ __documentId: av497t1h3pnce46g33znpjj2
 
 ------------------
 
+Registro 14
+id: 11154859055
+nombre: Implementación de Sistema de Videovigilancia
+estado: En Progreso
+categoria: Seguridad
+costo: 2400
+fecha: 2026-02-01
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11154859055
+__documentId: rrxbc41klr954ij49fh2fhou
+
+------------------
+

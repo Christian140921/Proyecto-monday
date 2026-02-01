@@ -232,4 +232,64 @@ async function upsertActivosDigitalesToStrapi(items) {
   return { created, updated, skipped };
 }
 
-module.exports = { getActivosDigitalesFromStrapi, upsertActivosDigitalesToStrapi };
+async function deleteMissingActivosDigitales(mondayIds) {
+  const { baseUrl, path, headers } = getStrapiConfig();
+  const fallbackPath = getAlternatePath(path);
+
+  if (!headers.Authorization) {
+    throw new Error('Falta STRAPI_API_TOKEN para borrar en Strapi.');
+  }
+
+  const existingRows = await fetchAllStrapiEntries();
+  const mondayIdSet = new Set(mondayIds.map((id) => String(id)));
+
+  let deleted = 0;
+  let skipped = 0;
+
+  const tryDelete = async (writePath, targetId) => {
+    const endpoint = `${baseUrl}${writePath}/${targetId}`;
+    return fetch(endpoint, { method: 'DELETE', headers });
+  };
+
+  for (const row of existingRows) {
+    const normalized = normalizeRow(row);
+    const id = normalized.id ? String(normalized.id) : null;
+
+    if (!id || mondayIdSet.has(id)) {
+      continue;
+    }
+
+    const entryId = normalized.__entryId || normalized.__documentId;
+    if (!entryId) {
+      skipped += 1;
+      continue;
+    }
+
+    let response = await tryDelete(path, entryId);
+
+    if (response.status === 404 && fallbackPath) {
+      response = await tryDelete(fallbackPath, entryId);
+    }
+
+    if (response.status === 405) {
+      skipped += 1;
+      console.warn(`Aviso: Strapi no permite borrar el registro ${id} (HTTP 405).`);
+      continue;
+    }
+
+    if (!response.ok) {
+      const text = await response.text().catch(() => '');
+      throw new Error(`Error al borrar en Strapi (HTTP ${response.status}). ${text}`);
+    }
+
+    deleted += 1;
+  }
+
+  return { deleted, skipped };
+}
+
+module.exports = {
+  getActivosDigitalesFromStrapi,
+  upsertActivosDigitalesToStrapi,
+  deleteMissingActivosDigitales,
+};

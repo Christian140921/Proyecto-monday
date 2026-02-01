@@ -1,7 +1,11 @@
 require('dotenv').config();
 
 const { getMondayData } = require('./services/mondayAPI');
-const { getActivosDigitalesFromStrapi, upsertActivosDigitalesToStrapi } = require('./services/strapiAPI');
+const {
+  getActivosDigitalesFromStrapi,
+  upsertActivosDigitalesToStrapi,
+  deleteMissingActivosDigitales,
+} = require('./services/strapiAPI');
 const { saveJsonToFile } = require('./utils/guardarJSON');
 const { savePlainText } = require('./utils/guardarTexto');
 
@@ -50,6 +54,15 @@ async function main() {
         console.log(`Strapi sincronizado: ${result.created} creados, ${result.updated} actualizados.`);
       } catch (error) {
         console.warn(`Aviso: no se pudo sincronizar Strapi: ${error.message}`);
+      }
+
+      if (process.env.STRAPI_SYNC_DELETE === 'true' || process.env.STRAPI_SYNC_DELETE === '1') {
+        try {
+          const result = await deleteMissingActivosDigitales(mondayItems.map((item) => item.id));
+          console.log(`Strapi limpieza: ${result.deleted} borrados, ${result.skipped} omitidos.`);
+        } catch (error) {
+          console.warn(`Aviso: no se pudo borrar en Strapi: ${error.message}`);
+        }
       }
     }
 
