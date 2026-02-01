@@ -61,5 +61,14 @@
     "costo": 750,
     "fecha": "2026-01-21",
     "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066737054"
+  },
+  {
+    "id": "11154630310",
+    "nombre": "Instalación de Firewall",
+    "estado": "En Progreso",
+    "categoria": "Seguridad",
+    "costo": 2100,
+    "fecha": "2026-02-01",
+    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11154630310"
   }
 ]

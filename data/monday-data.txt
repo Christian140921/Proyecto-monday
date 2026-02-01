@@ -77,3 +77,14 @@ url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/puls
 
 ------------------
 
+Registro 8
+id: 11154630310
+nombre: Instalación de Firewall
+estado: En Progreso
+categoria: Seguridad
+costo: 2100
+fecha: 2026-02-01
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11154630310
+
+------------------
+
