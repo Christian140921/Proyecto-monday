@@ -77,25 +77,3 @@ url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/puls
 
 ------------------
 
-Registro 8
-id: 11066795454
-nombre: Monitoreo de Consumo Energético
-estado: En Progreso
-categoria: Infraestructura
-costo: 500
-fecha: 2026-01-21
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066795454
-
-------------------
-
-Registro 9
-id: 11152089892
-nombre: Migración a Infraestructura Híbrida
-estado: En Progreso
-categoria: Infraestructura
-costo: 3000
-fecha: 2026-01-31
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11152089892
-
-------------------
-

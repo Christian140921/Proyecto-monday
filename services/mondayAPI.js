@@ -19,7 +19,21 @@ async function getMondayData() {
     );
   }
 
-  return await response.json();
+  const payload = await response.json();
+
+  if (Array.isArray(payload)) {
+    return payload;
+  }
+
+  if (Array.isArray(payload?.monday)) {
+    return payload.monday;
+  }
+
+  if (Array.isArray(payload?.data)) {
+    return payload.data;
+  }
+
+  return [];
 }
 
 module.exports = { getMondayData };
