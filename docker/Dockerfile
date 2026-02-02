@@ -5,11 +5,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production
 
-COPY index.js server.js ./
-COPY services/ ./services/
-COPY utils/ ./utils/
+COPY src/ ./src/
 COPY data/ ./data/
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["node", "src/server.js"]

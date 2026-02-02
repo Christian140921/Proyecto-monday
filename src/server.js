@@ -19,8 +19,8 @@ function sendText(res, filename, content) {
 }
 
 app.get('/download', (req, res) => {
-  const mondayPath = path.join(__dirname, 'data', 'monday-data.txt');
-  const strapiPath = path.join(__dirname, 'data', 'strapi-data.txt');
+  const mondayPath = path.join(__dirname, '..', 'data', 'monday-data.txt');
+  const strapiPath = path.join(__dirname, '..', 'data', 'strapi-data.txt');
 
   const mondayContent = readTextOrFallback(mondayPath, 'DATOS DE MONDAY');
   const strapiContent = readTextOrFallback(strapiPath, 'DATOS DE STRAPI');
@@ -30,13 +30,13 @@ app.get('/download', (req, res) => {
 });
 
 app.get('/download-monday', (req, res) => {
-  const mondayPath = path.join(__dirname, 'data', 'monday-data.txt');
+  const mondayPath = path.join(__dirname, '..', 'data', 'monday-data.txt');
   const mondayContent = readTextOrFallback(mondayPath, 'DATOS DE MONDAY');
   return sendText(res, 'monday-data.txt', mondayContent);
 });
 
 app.get('/download-strapi', (req, res) => {
-  const strapiPath = path.join(__dirname, 'data', 'strapi-data.txt');
+  const strapiPath = path.join(__dirname, '..', 'data', 'strapi-data.txt');
   const strapiContent = readTextOrFallback(strapiPath, 'DATOS DE STRAPI');
   return sendText(res, 'strapi-data.txt', strapiContent);
 });

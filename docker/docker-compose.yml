@@ -1,10 +1,16 @@
+name: proyecto-monday
+
 services:
   # Tu aplicación Node.js
   app:
-    build: .
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: monday-app
     ports:
       - "3000:3000"
+    env_file:
+      - ../.env
     environment:
       - MONDAY_DATA_URL=http://n8n:5678/webhook/monday-data
       - STRAPI_BASE_URL=http://strapi:1337
@@ -13,7 +19,7 @@ services:
       - STRAPI_SYNC=${STRAPI_SYNC:-true}
       - STRAPI_SYNC_DELETE=${STRAPI_SYNC_DELETE:-false}
     volumes:
-      - ./data:/app/data
+      - ../data:/app/data
     depends_on:
       - n8n
       - strapi
@@ -38,10 +44,12 @@ services:
 
   # Strapi CMS
   strapi:
-    build: ./strapi
+    build: ../strapi
     container_name: monday-strapi
     ports:
       - "1337:1337"
+    env_file:
+      - ../.env
     environment:
       - HOST=0.0.0.0
       - PORT=1337
@@ -53,8 +61,8 @@ services:
       - DATABASE_CLIENT=sqlite
       - DATABASE_FILENAME=.tmp/data.db
     volumes:
-      - ./strapi/.tmp:/app/.tmp
-      - ./strapi/public/uploads:/app/public/uploads
+      - ../strapi/.tmp:/app/.tmp
+      - ../strapi/public/uploads:/app/public/uploads
     networks:
       - monday-network
 

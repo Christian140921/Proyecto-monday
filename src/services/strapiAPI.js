@@ -170,7 +170,7 @@ async function upsertActivosDigitalesToStrapi(items) {
     const existing = existingByMondayId.get(String(item.id));
     const entryId = existing?.entryId;
     const documentId = existing?.documentId;
-    const method = entryId || documentId ? 'PUT' : 'POST';
+    const method = entryId || documentId ? 'PATCH' : 'POST';
 
     const tryRequest = async (writePath, overrideMethod, targetId) => {
       const endpoint = targetId
@@ -191,18 +191,18 @@ async function upsertActivosDigitalesToStrapi(items) {
     }
 
     if (response.status === 405 && (entryId || documentId)) {
-      // Algunos setups aceptan PATCH en lugar de PUT
-      response = await tryRequest(path, 'PATCH', entryId || documentId);
+      // Si PATCH falla con 405, intentar PUT
+      response = await tryRequest(path, 'PUT', entryId || documentId);
       if (response.status === 404 && fallbackPath) {
-        response = await tryRequest(fallbackPath, 'PATCH', entryId || documentId);
+        response = await tryRequest(fallbackPath, 'PUT', entryId || documentId);
       }
     }
 
     if (response.status === 405 && documentId && entryId && documentId !== entryId) {
       // Intentar con documentId si el id numérico no funciona
-      response = await tryRequest(path, 'PATCH', documentId);
+      response = await tryRequest(path, 'PUT', documentId);
       if (response.status === 404 && fallbackPath) {
-        response = await tryRequest(fallbackPath, 'PATCH', documentId);
+        response = await tryRequest(fallbackPath, 'PUT', documentId);
       }
     }
 

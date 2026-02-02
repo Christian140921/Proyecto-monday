@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function savePlainText(filePath, data, options = {}) {
-  const projectRoot = path.resolve(__dirname, '..');
+  const projectRoot = path.resolve(__dirname, '..', '..');
   const fullPath = path.resolve(projectRoot, filePath);
 
   const title = options.title || 'DATOS';

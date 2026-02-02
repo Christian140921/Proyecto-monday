@@ -1,78 +1,6 @@
 DATOS DE STRAPI
 
 Registro 1
-id: 11056369807
-nombre: Actualización de Servidores
-estado: En Progreso
-categoria: Hardware, Software
-costo: 15000
-fecha: 2026-01-02
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056369807
-__documentId: ew9zc09927czji1v6ihg287e
-
-------------------
-
-Registro 2
-id: 11056374688
-nombre: Auditoría de Sistemas
-estado: Completado
-categoria: null
-costo: 8000
-fecha: 2026-01-30
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374688
-__documentId: jbwmy2s3bxtk0pxx4h5zjpzt
-
-------------------
-
-Registro 3
-id: 11056370236
-nombre: Capacitación en Soporte Técnico
-estado: Atascado
-categoria: Soporte
-costo: 3000
-fecha: 2026-02-25
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056370236
-__documentId: feun11wh4h226kh99n3n3s14
-
-------------------
-
-Registro 4
-id: 11056374701
-nombre: Instalación de Firewall
-estado: Completado
-categoria: Redes, Soporte
-costo: 5000
-fecha: 2026-02-15
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374701
-__documentId: yrath2tkxf5z0qzhygg19ajh
-
-------------------
-
-Registro 5
-id: 11056377230
-nombre: Implementación de Software de Gestión
-estado: No Comenzado
-categoria:  Software
-costo: 25000
-fecha: 2026-03-10
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056377230
-__documentId: qgvl6ohyyb58tbt1gpwp4epd
-
-------------------
-
-Registro 6
-id: 11066701267
-nombre: Prueba de Integración de Red
-estado: En Progreso
-categoria: Infraestructura
-costo: 1000
-fecha: 2026-01-21
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267
-__documentId: nicrto1clh55ub3gefkxv7sk
-
-------------------
-
-Registro 7
 id: 11066795454
 nombre: Monitoreo de Consumo Energético
 estado: En Progreso
@@ -84,7 +12,7 @@ __documentId: rtmyoi02nh9v57b5g7kjh3s8
 
 ------------------
 
-Registro 8
+Registro 2
 id: test
 nombre: Test
 estado: null
@@ -96,19 +24,7 @@ __documentId: yxewzlc4rmwygxxev8hri8hx
 
 ------------------
 
-Registro 9
-id: 11066737054
-nombre: Simulación de Respaldo de Datos
-estado: No Comenzado
-categoria: Seguridad
-costo: 750
-fecha: 2026-01-21
-url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066737054
-__documentId: o12vs7dbkonzwmgm0xhajeeg
-
-------------------
-
-Registro 10
+Registro 3
 id: 11152089892
 nombre: Migración a Infraestructura Híbrida
 estado: En Progreso
@@ -120,7 +36,7 @@ __documentId: s3iqtpmorhbion7cpps5kng1
 
 ------------------
 
-Registro 11
+Registro 4
 id: 11152119692
 nombre: Implementación de Control de Acceso Biométrico
 estado: No Comenzado
@@ -132,7 +48,7 @@ __documentId: mnsccu9zqemr37gugzmegvxp
 
 ------------------
 
-Registro 12
+Registro 5
 id: 11154630310
 nombre: Instalación de Firewall
 estado: En Progreso
@@ -144,7 +60,7 @@ __documentId: s0fo0n315hml8c590qs73snf
 
 ------------------
 
-Registro 13
+Registro 6
 id: 11154737280
 nombre: Evaluación de Desempeño de Equipos
 estado: No Comenzado
@@ -156,7 +72,7 @@ __documentId: av497t1h3pnce46g33znpjj2
 
 ------------------
 
-Registro 14
+Registro 7
 id: 11154859055
 nombre: Implementación de Sistema de Videovigilancia
 estado: En Progreso
@@ -168,7 +84,7 @@ __documentId: rrxbc41klr954ij49fh2fhou
 
 ------------------
 
-Registro 15
+Registro 8
 id: 11154942671
 nombre: Prueba de Recuperación ante Desastres
 estado: Atascado
@@ -177,6 +93,102 @@ costo: 2700
 fecha: 2026-02-01
 url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11154942671
 __documentId: sfp1t2aglio413tks7l0o68u
+
+------------------
+
+Registro 9
+id: 11156527235
+nombre: Optimización de Red Wi-Fi Corporativa
+estado: En Progreso
+categoria: Infraestructura
+costo: 1500
+fecha: 2026-02-01
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11156527235
+__documentId: vu1xjr4pcwg7v21t4g7pa41b
+
+------------------
+
+Registro 10
+id: 11056369807
+nombre: Actualización de Servidores
+estado: En Progreso
+categoria: Hardware, Software
+costo: 15000
+fecha: 2026-02-01
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056369807
+__documentId: ew9zc09927czji1v6ihg287e
+
+------------------
+
+Registro 11
+id: 11056374688
+nombre: Auditoría de Sistemas
+estado: Completado
+categoria: null
+costo: 8000
+fecha: 2026-01-30
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374688
+__documentId: jbwmy2s3bxtk0pxx4h5zjpzt
+
+------------------
+
+Registro 12
+id: 11056370236
+nombre: Capacitación en Soporte Técnico
+estado: Atascado
+categoria: Soporte
+costo: 3000
+fecha: 2026-02-25
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056370236
+__documentId: feun11wh4h226kh99n3n3s14
+
+------------------
+
+Registro 13
+id: 11056374701
+nombre: Instalación de Firewall
+estado: Completado
+categoria: Redes, Soporte
+costo: 5000
+fecha: 2026-02-15
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374701
+__documentId: yrath2tkxf5z0qzhygg19ajh
+
+------------------
+
+Registro 14
+id: 11056377230
+nombre: Implementación de Software de Gestión
+estado: No Comenzado
+categoria: Software
+costo: 25000
+fecha: 2026-03-10
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056377230
+__documentId: qgvl6ohyyb58tbt1gpwp4epd
+
+------------------
+
+Registro 15
+id: 11066701267
+nombre: Prueba de Integración de Red
+estado: En Progreso
+categoria: Infraestructura
+costo: 1000
+fecha: 2026-01-21
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267
+__documentId: nicrto1clh55ub3gefkxv7sk
+
+------------------
+
+Registro 16
+id: 11066737054
+nombre: Simulación de Respaldo de Datos
+estado: No Comenzado
+categoria: Seguridad
+costo: 750
+fecha: 2026-01-21
+url: https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066737054
+__documentId: o12vs7dbkonzwmgm0xhajeeg
 
 ------------------
 

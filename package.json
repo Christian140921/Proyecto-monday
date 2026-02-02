@@ -2,12 +2,12 @@
   "name": "proyecto-monday",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
-    "fetch": "node index.js",
-    "sync:strapi": "node index.js",
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
+    "fetch": "node src/index.js",
+    "sync:strapi": "node src/index.js",
     "strapi:develop": "npm --prefix strapi run develop",
     "strapi:start": "npm --prefix strapi start",
     "test": "echo \"Error: no test specified\" && exit 1"
