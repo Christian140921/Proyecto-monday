@@ -58,7 +58,7 @@ async function getActivosDigitalesFromStrapi() {
       const text = await response.text();
       details = text ? ` Detalles: ${text.slice(0, 300)}` : '';
     } catch {
-      // ignore
+      // No se pudo parsear la respuesta, continuamos sin detalles
     }
 
     if (response.status === 401 || response.status === 403) {
@@ -83,7 +83,6 @@ async function getActivosDigitalesFromStrapi() {
 
   return rows.map((row) => {
     const normalized = normalizeRow(row);
-    delete normalized.__entryId;
     return normalized;
   });
 }
@@ -105,7 +104,14 @@ async function fetchAllStrapiEntries() {
 
     const payload = await response.json();
     const rows = Array.isArray(payload?.data) ? payload.data : [];
-    items.push(...rows);
+
+    const withIds = rows.map((row) => ({
+      ...row,
+      __entryId: row.id,
+      __documentId: row.documentId,
+    }));
+
+    items.push(...withIds);
 
     pageCount = payload?.meta?.pagination?.pageCount || 1;
     page += 1;
@@ -170,7 +176,9 @@ async function upsertActivosDigitalesToStrapi(items) {
     const existing = existingByMondayId.get(String(item.id));
     const entryId = existing?.entryId;
     const documentId = existing?.documentId;
-    const method = entryId || documentId ? 'PATCH' : 'POST';
+    const primaryId = documentId || entryId;
+    const fallbackId = documentId && entryId && documentId !== entryId ? entryId : undefined;
+    const method = primaryId ? 'PATCH' : 'POST';
 
     const tryRequest = async (writePath, overrideMethod, targetId) => {
       const endpoint = targetId
@@ -184,30 +192,37 @@ async function upsertActivosDigitalesToStrapi(items) {
       return response;
     };
 
-    let response = await tryRequest(path, undefined, entryId || documentId);
+    let response = await tryRequest(path, undefined, primaryId);
 
     if (response.status === 404 && fallbackPath) {
-      response = await tryRequest(fallbackPath, undefined, entryId || documentId);
+      response = await tryRequest(fallbackPath, undefined, primaryId);
     }
 
-    if (response.status === 405 && (entryId || documentId)) {
-      // Si PATCH falla con 405, intentar PUT
-      response = await tryRequest(path, 'PUT', entryId || documentId);
+    if (response.status === 404 && fallbackId) {
+      response = await tryRequest(path, undefined, fallbackId);
       if (response.status === 404 && fallbackPath) {
-        response = await tryRequest(fallbackPath, 'PUT', entryId || documentId);
+        response = await tryRequest(fallbackPath, undefined, fallbackId);
       }
     }
 
-    if (response.status === 405 && documentId && entryId && documentId !== entryId) {
-      // Intentar con documentId si el id numérico no funciona
-      response = await tryRequest(path, 'PUT', documentId);
+    if (response.status === 405 && primaryId) {
+      // Strapi rechazó PATCH, probamos con PUT
+      response = await tryRequest(path, 'PUT', primaryId);
       if (response.status === 404 && fallbackPath) {
-        response = await tryRequest(fallbackPath, 'PUT', documentId);
+        response = await tryRequest(fallbackPath, 'PUT', primaryId);
+      }
+    }
+
+    if (response.status === 405 && fallbackId) {
+      // Fallback con entryId si documentId no funcionó
+      response = await tryRequest(path, 'PUT', fallbackId);
+      if (response.status === 404 && fallbackPath) {
+        response = await tryRequest(fallbackPath, 'PUT', fallbackId);
       }
     }
 
     if (!response.ok) {
-      if (response.status === 405 && (entryId || documentId)) {
+      if (response.status === 405 && (primaryId || fallbackId)) {
         skipped += 1;
         console.warn(
           `Aviso: Strapi no permite actualizar el registro ${item.id} (HTTP 405). Se omite la actualización.`
@@ -222,7 +237,7 @@ async function upsertActivosDigitalesToStrapi(items) {
       );
     }
 
-    if (entryId) {
+    if (entryId || documentId) {
       updated += 1;
     } else {
       created += 1;
@@ -259,21 +274,40 @@ async function deleteMissingActivosDigitales(mondayIds) {
       continue;
     }
 
-    const entryId = normalized.__entryId || normalized.__documentId;
-    if (!entryId) {
+    const primaryId = normalized.__documentId || normalized.__entryId;
+    const fallbackId =
+      normalized.__documentId &&
+      normalized.__entryId &&
+      normalized.__documentId !== normalized.__entryId
+        ? normalized.__entryId
+        : undefined;
+
+    if (!primaryId) {
       skipped += 1;
       continue;
     }
 
-    let response = await tryDelete(path, entryId);
+    let response = await tryDelete(path, primaryId);
 
     if (response.status === 404 && fallbackPath) {
-      response = await tryDelete(fallbackPath, entryId);
+      response = await tryDelete(fallbackPath, primaryId);
+    }
+
+    if (response.status === 404 && fallbackId) {
+      response = await tryDelete(path, fallbackId);
+      if (response.status === 404 && fallbackPath) {
+        response = await tryDelete(fallbackPath, fallbackId);
+      }
     }
 
     if (response.status === 405) {
       skipped += 1;
       console.warn(`Aviso: Strapi no permite borrar el registro ${id} (HTTP 405).`);
+      continue;
+    }
+
+    if (response.status === 404) {
+      skipped += 1;
       continue;
     }
 
