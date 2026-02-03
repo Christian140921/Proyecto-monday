@@ -6,7 +6,9 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 COPY src/ ./src/
-COPY data/ ./data/
+
+# Crear directorio de datos si no existe
+RUN mkdir -p data/
 
 EXPOSE 3000
 
