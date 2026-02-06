@@ -15,7 +15,7 @@ cp .env.example .env
 Obtén el token en http://localhost:1337/admin (Settings → API Tokens → Create new). Luego:
 
 ```env
-STRAPI_API_TOKEN=tu_token_aqui
+STRAPI_API_TOKEN=ef073a8cf8f18ae38cf734ed3332d226ed5424351075ed65f96ed3d6618596c149aa01b74f42fcaf39e7cf585dce84726dd47e9cfcff9a44c87e59f9b49789b8dcdeeec348e165002115df6c12c6be155aa0aba6180b7cbe3ec6af95be753ddda7e5b914027ce08231a811c2c292330332f250c80d2ff9852d94ecbd3c68200d
 STRAPI_SYNC=true
 STRAPI_SYNC_DELETE=true
 ```
