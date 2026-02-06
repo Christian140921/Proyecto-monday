@@ -5,42 +5,32 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-function readTextOrFallback(filePath, fallbackTitle) {
-  return fs.existsSync(filePath)
-    ? fs.readFileSync(filePath, 'utf-8')
-    : `${fallbackTitle}\n\n(no hay datos)\n`;
-}
-
-function sendText(res, filename, content) {
-  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-  res.setHeader('Cache-Control', 'no-store');
-  res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-  res.send(content);
-}
+const mondayPath = path.join(__dirname, '..', 'data', 'monday-data.txt');
+const strapiPath = path.join(__dirname, '..', 'data', 'strapi-data.txt');
 
 app.get('/download', (req, res) => {
-  const mondayPath = path.join(__dirname, '..', 'data', 'monday-data.txt');
-  const strapiPath = path.join(__dirname, '..', 'data', 'strapi-data.txt');
+  const monday = fs.existsSync(mondayPath) ? fs.readFileSync(mondayPath, 'utf-8') : '(no hay datos)';
+  const strapi = fs.existsSync(strapiPath) ? fs.readFileSync(strapiPath, 'utf-8') : '(no hay datos)';
 
-  const mondayContent = readTextOrFallback(mondayPath, 'DATOS DE MONDAY');
-  const strapiContent = readTextOrFallback(strapiPath, 'DATOS DE STRAPI');
-
-  const content = `${mondayContent}\n\n====================\n\n${strapiContent}`;
-  return sendText(res, 'datos-monday-strapi.txt', content);
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="datos-monday-strapi.txt"');
+  res.send(monday + '\n\n====================\n\n' + strapi);
 });
 
 app.get('/download-monday', (req, res) => {
-  const mondayPath = path.join(__dirname, '..', 'data', 'monday-data.txt');
-  const mondayContent = readTextOrFallback(mondayPath, 'DATOS DE MONDAY');
-  return sendText(res, 'monday-data.txt', mondayContent);
+  const monday = fs.existsSync(mondayPath) ? fs.readFileSync(mondayPath, 'utf-8') : '(no hay datos)';
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="monday-data.txt"');
+  res.send(monday);
 });
 
 app.get('/download-strapi', (req, res) => {
-  const strapiPath = path.join(__dirname, '..', 'data', 'strapi-data.txt');
-  const strapiContent = readTextOrFallback(strapiPath, 'DATOS DE STRAPI');
-  return sendText(res, 'strapi-data.txt', strapiContent);
+  const strapi = fs.existsSync(strapiPath) ? fs.readFileSync(strapiPath, 'utf-8') : '(no hay datos)';
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="strapi-data.txt"');
+  res.send(strapi);
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor activo en http://localhost:${PORT}`);
+  console.log(`Servidor en http://localhost:${PORT}`);
 });

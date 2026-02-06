@@ -4,13 +4,16 @@ DATOS DE MONDAY
 +-----------------+---------------------------------------------------+-----------------+--------------------+-----------------+-----------------+----------------------------------------------------+
 | id              | nombre                                            | estado          | categoria          | costo           | fecha           | url                                                |
 +-----------------+---------------------------------------------------+-----------------+--------------------+-----------------+-----------------+----------------------------------------------------+
-| 11056369807     | Actualización de Servidores                       | En Progreso     | Hardware, Software | 15000           | 2026-02-01      | https://cristianvargas6322s-team-company.monday.co |
-| 11056374688     | Auditoría de Sistemas                             | Completado      |                    | 8000            | 2026-01-30      | https://cristianvargas6322s-team-company.monday.co |
-| 11056370236     | Capacitación en Soporte Técnico                   | Atascado        | Soporte            | 3000            | 2026-02-25      | https://cristianvargas6322s-team-company.monday.co |
-| 11056374701     | Instalación de Firewall                           | Completado      | Redes, Soporte     | 5000            | 2026-02-15      | https://cristianvargas6322s-team-company.monday.co |
-| 11056377230     | Implementación de Software de Gestión             | No Comenzado    | Software           | 25000           | 2026-03-10      | https://cristianvargas6322s-team-company.monday.co |
-| 11066701267     | Prueba de Integración de Red                      | En Progreso     | Infraestructura    | 1000            | 2026-01-21      | https://cristianvargas6322s-team-company.monday.co |
-| 11166385658     | Implementación de Plataforma de Videoconferencias | Completado      | Innovación         | 1900            | 2026-02-02      | https://cristianvargas6322s-team-company.monday.co |
+| 11203646334     | Actualización de Servidores                       | En Progreso     | Hardware, Software | 15000           | 2026-02-01      | https://christian110721s-team.monday.com/boards/18 |
+| 11203646542     | Auditoría de Sistemas                             | Completado      | Soporte            | 8000            | 2026-01-30      | https://christian110721s-team.monday.com/boards/18 |
+| 11203650396     | Capacitación en Soporte Técnico                   | Atascado        | Soporte            | 3000            | 2026-02-25      | https://christian110721s-team.monday.com/boards/18 |
+| 11203650975     | Instalación de Firewall                           | Completado      | Redes, Soporte     | 5000            | 2026-02-15      | https://christian110721s-team.monday.com/boards/18 |
+| 11203650802     | Implementación de Software de Gestión             | No Comenzado    | Software           | 25000           | 2026-03-10      | https://christian110721s-team.monday.com/boards/18 |
+| 11203650427     | Prueba de Integración de Red                      | En Progreso     | Infraestructura    | 1000            | 2026-01-21      | https://christian110721s-team.monday.com/boards/18 |
+| 11203650600     | Implementación de Plataforma de Videoconferencias | Completado      | Innovación         | 1900            | 2026-02-02      | https://christian110721s-team.monday.com/boards/18 |
+| 11203723293     | Nuevo registro de ejemplo                         | En Progreso     | Ejemplo            |                 | 2026-02-05      | https://christian110721s-team.monday.com/boards/18 |
+| 11204184379     | Migración de Base de Datos                        | En Progreso     | Infraestructura    | 12000           | 2026-02-06      | https://christian110721s-team.monday.com/boards/18 |
+| 11204231013     | Actualización de Políticas de Seguridad           | Not Started     | Seguridad          |                 |                 | https://christian110721s-team.monday.com/boards/18 |
 +-----------------+---------------------------------------------------+-----------------+--------------------+-----------------+-----------------+----------------------------------------------------+
 
-Total: 7 registros
+Total: 10 registros

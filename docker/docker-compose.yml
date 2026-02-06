@@ -1,7 +1,6 @@
 name: proyecto-monday
 
 services:
-  # Tu aplicación Node.js
   app:
     build:
       context: ..
@@ -26,7 +25,6 @@ services:
     networks:
       - monday-network
 
-  # n8n - Automatización de workflows
   n8n:
     image: n8nio/n8n:latest
     container_name: monday-n8n
@@ -42,7 +40,6 @@ services:
     networks:
       - monday-network
 
-  # Strapi CMS
   strapi:
     build: ../strapi
     container_name: monday-strapi

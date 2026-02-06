@@ -1,14 +1,13 @@
-const DEFAULT_PAGE_SIZE = 100;
+const PAGE_SIZE = 100;
 
 function getStrapiConfig() {
   const baseUrl = (process.env.STRAPI_BASE_URL || 'http://localhost:1337').replace(/\/$/, '');
-  const path = (process.env.STRAPI_ACTIVO_DIGITAL_PATH || '/api/activo-digital').replace(/^([^/])/, '/$1');
+  const path = process.env.STRAPI_ACTIVO_DIGITAL_PATH || '/api/activo-digital';
+  const token = process.env.STRAPI_API_TOKEN;
 
   const headers = {
-    Accept: 'application/json',
     'Content-Type': 'application/json',
   };
-  const token = process.env.STRAPI_API_TOKEN;
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
@@ -16,150 +15,104 @@ function getStrapiConfig() {
   return { baseUrl, path, headers };
 }
 
-function normalizeRow(row) {
-  const source = row && typeof row === 'object' ? row.attributes || row : {};
+async function hacerRequest(url, options = {}) {
+  let response;
+  try {
+    response = await fetch(url, options);
+  } catch {
+    throw new Error(`No se pudo conectar con Strapi (${url}).`);
+  }
 
-  const idFromMonday = source.id_monday ?? source.idMonday ?? source.id_lunes ?? source.idLunes;
-  const idFallback = row && row.id != null ? row.id : source.id;
-  const documentId = row && row.documentId ? row.documentId : source.documentId;
+  if (!response.ok) {
+    const body = await response.text().catch(() => '');
+    throw new Error(`Strapi error HTTP ${response.status}. ${body.slice(0, 200)}`);
+  }
+
+  // DELETE y algunas respuestas vienen vacías
+  const text = await response.text().catch(() => '');
+  if (!text) return null;
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
+}
+
+function normalizeRow(row) {
+  const source = row.attributes || row;
+  const mondayId = source.id_monday || source.idMonday;
 
   return {
-    id: idFromMonday != null ? String(idFromMonday) : idFallback != null ? String(idFallback) : undefined,
-    nombre: source.nombre ?? source.Nombre ?? null,
-    estado: source.estado ?? source.Estado ?? null,
-    categoria: source.categoria ?? source.Categoria ?? null,
-    costo: source.costo ?? source.Costo ?? null,
-    fecha: source.fecha ?? source.Fecha ?? null,
-    url: source.url ?? source.URL ?? null,
-    __entryId: row && row.id != null ? row.id : undefined,
-    __documentId: documentId,
+    id: mondayId ? String(mondayId) : row.id ? String(row.id) : undefined,
+    nombre: source.Nombre || source.nombre || null,
+    estado: source.Estado || source.estado || null,
+    categoria: source.Categoria || source.categoria || null,
+    costo: source.Costo || source.costo || null,
+    fecha: source.Fecha || source.fecha || null,
+    url: source.URL || source.url || null,
+    __entryId: row.id,
+    __documentId: row.documentId || source.documentId,
   };
 }
 
 async function getActivosDigitalesFromStrapi() {
-  const directUrl = process.env.STRAPI_DATA_URL;
   const { baseUrl, path, headers } = getStrapiConfig();
-  const endpoint = directUrl || `${baseUrl}${path}?pagination%5BpageSize%5D=${DEFAULT_PAGE_SIZE}`;
+  const url = process.env.STRAPI_DATA_URL || `${baseUrl}${path}?pagination[pageSize]=${PAGE_SIZE}`;
 
-  let response;
-  try {
-    response = await fetch(endpoint, { headers });
-  } catch (error) {
-    throw new Error(
-      `No se pudo conectar con Strapi en ${baseUrl}. ` +
-        'Asegúrate de que Strapi esté corriendo y accesible (por defecto http://localhost:1337), ' +
-        'o configura STRAPI_BASE_URL.'
-    );
-  }
-
-  if (!response.ok) {
-    let details = '';
-    try {
-      const text = await response.text();
-      details = text ? ` Detalles: ${text.slice(0, 300)}` : '';
-    } catch {
-      // No se pudo parsear la respuesta, continuamos sin detalles
-    }
-
-    if (response.status === 401 || response.status === 403) {
-      throw new Error(
-        `Strapi respondió ${response.status} (no autorizado). ` +
-          'Si tu endpoint no es público, crea un API Token en Strapi y configura STRAPI_API_TOKEN.' +
-          details
-      );
-    }
-
-    throw new Error(`Error al obtener datos desde Strapi (HTTP ${response.status}).${details}`);
-  }
-
-  const payload = await response.json();
-  const rows = Array.isArray(payload)
-    ? payload
-    : Array.isArray(payload?.strapi)
-      ? payload.strapi
-      : Array.isArray(payload?.data)
-        ? payload.data
-        : [];
-
-  return rows.map((row) => {
-    const normalized = normalizeRow(row);
-    return normalized;
-  });
+  const payload = await hacerRequest(url, { headers });
+  const rows = Array.isArray(payload) ? payload : (payload?.data || []);
+  return rows.map(normalizeRow);
 }
 
 async function fetchAllStrapiEntries() {
   const { baseUrl, path, headers } = getStrapiConfig();
-  const items = [];
+  const todos = [];
   let page = 1;
-  let pageCount = 1;
+  let totalPages = 1;
 
-  while (page <= pageCount) {
-    const endpoint = `${baseUrl}${path}?pagination%5Bpage%5D=${page}&pagination%5BpageSize%5D=${DEFAULT_PAGE_SIZE}`;
-    const response = await fetch(endpoint, { headers });
+  while (page <= totalPages) {
+    const url = `${baseUrl}${path}?pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`;
+    const payload = await hacerRequest(url, { headers });
+    const rows = payload?.data || [];
 
-    if (!response.ok) {
-      const text = await response.text().catch(() => '');
-      throw new Error(`Error al leer Strapi para sincronizar (HTTP ${response.status}). ${text}`);
-    }
-
-    const payload = await response.json();
-    const rows = Array.isArray(payload?.data) ? payload.data : [];
-
-    const withIds = rows.map((row) => ({
-      ...row,
-      __entryId: row.id,
-      __documentId: row.documentId,
-    }));
-
-    items.push(...withIds);
-
-    pageCount = payload?.meta?.pagination?.pageCount || 1;
-    page += 1;
+    todos.push(...rows);
+    totalPages = payload?.meta?.pagination?.pageCount || 1;
+    page++;
   }
 
-  return items;
+  return todos;
 }
 
-function toStrapiPayload(item) {
+function armarPayload(item) {
   return {
-    id_monday: item.id ?? null,
-    Nombre: item.nombre ?? null,
-    Estado: item.estado ?? null,
-    Categoria: item.categoria ?? null,
-    Costo: item.costo ?? null,
-    Fecha: item.fecha ?? null,
-    URL: item.url ?? null,
+    id_monday: item.id || null,
+    Nombre: item.nombre || null,
+    Estado: item.estado || null,
+    Categoria: item.categoria || null,
+    Costo: item.costo || null,
+    Fecha: item.fecha || null,
+    URL: item.url || null,
   };
-}
-
-function getAlternatePath(path) {
-  if (path.endsWith('/api/activo-digital')) {
-    return '/api/activos-digitales';
-  }
-  if (path.endsWith('/api/activos-digitales')) {
-    return '/api/activo-digital';
-  }
-  return null;
 }
 
 async function upsertActivosDigitalesToStrapi(items) {
   const { baseUrl, path, headers } = getStrapiConfig();
-  const fallbackPath = getAlternatePath(path);
 
   if (!headers.Authorization) {
-    throw new Error('Falta STRAPI_API_TOKEN para crear/actualizar en Strapi.');
+    throw new Error('STRAPI_API_TOKEN no está configurado.');
   }
 
-  const existingRows = await fetchAllStrapiEntries();
-  const existingByMondayId = new Map();
-
-  existingRows.forEach((row) => {
-    const normalized = normalizeRow(row);
-    if (normalized.id) {
-      existingByMondayId.set(String(normalized.id), {
-        entryId: normalized.__entryId,
-        documentId: normalized.__documentId,
-      });
+  // Traer lo que ya existe en Strapi para saber si crear o actualizar
+  const existentes = await fetchAllStrapiEntries();
+  const porMondayId = {};
+  existentes.forEach((row) => {
+    const n = normalizeRow(row);
+    if (n.id) {
+      porMondayId[String(n.id)] = {
+        entryId: n.__entryId,
+        documentId: n.__documentId,
+      };
     }
   });
 
@@ -168,79 +121,38 @@ async function upsertActivosDigitalesToStrapi(items) {
   let skipped = 0;
 
   for (const item of items) {
-    if (!item || !item.id) {
+    if (!item || !item.id) continue;
+
+    const body = JSON.stringify({ data: armarPayload(item) });
+    const existe = porMondayId[String(item.id)];
+    const targetId = existe?.documentId || existe?.entryId;
+
+    if (!targetId) {
+      // No existe, crear
+      const url = `${baseUrl}${path}`;
+      await hacerRequest(url, { method: 'POST', headers, body });
+      created++;
       continue;
     }
 
-    const payload = { data: toStrapiPayload(item) };
-    const existing = existingByMondayId.get(String(item.id));
-    const entryId = existing?.entryId;
-    const documentId = existing?.documentId;
-    const primaryId = documentId || entryId;
-    const fallbackId = documentId && entryId && documentId !== entryId ? entryId : undefined;
-    const method = primaryId ? 'PATCH' : 'POST';
-
-    const tryRequest = async (writePath, overrideMethod, targetId) => {
-      const endpoint = targetId
-        ? `${baseUrl}${writePath}/${targetId}`
-        : `${baseUrl}${writePath}`;
-      const response = await fetch(endpoint, {
-        method: overrideMethod || method,
-        headers,
-        body: JSON.stringify(payload),
-      });
-      return response;
-    };
-
-    let response = await tryRequest(path, undefined, primaryId);
-
-    if (response.status === 404 && fallbackPath) {
-      response = await tryRequest(fallbackPath, undefined, primaryId);
-    }
-
-    if (response.status === 404 && fallbackId) {
-      response = await tryRequest(path, undefined, fallbackId);
-      if (response.status === 404 && fallbackPath) {
-        response = await tryRequest(fallbackPath, undefined, fallbackId);
+    // Existe, actualizar
+    const url = `${baseUrl}${path}/${targetId}`;
+    try {
+      await hacerRequest(url, { method: 'PUT', headers, body });
+      updated++;
+    } catch (err) {
+      // Strapi v5 rechaza PUT, probar PATCH
+      if (String(err.message).includes('405')) {
+        try {
+          await hacerRequest(url, { method: 'PATCH', headers, body });
+          updated++;
+        } catch {
+          skipped++;
+          console.warn(`No se pudo actualizar ${item.id}`);
+        }
+      } else {
+        throw err;
       }
-    }
-
-    if (response.status === 405 && primaryId) {
-      // Strapi rechazó PATCH, probamos con PUT
-      response = await tryRequest(path, 'PUT', primaryId);
-      if (response.status === 404 && fallbackPath) {
-        response = await tryRequest(fallbackPath, 'PUT', primaryId);
-      }
-    }
-
-    if (response.status === 405 && fallbackId) {
-      // Fallback con entryId si documentId no funcionó
-      response = await tryRequest(path, 'PUT', fallbackId);
-      if (response.status === 404 && fallbackPath) {
-        response = await tryRequest(fallbackPath, 'PUT', fallbackId);
-      }
-    }
-
-    if (!response.ok) {
-      if (response.status === 405 && (primaryId || fallbackId)) {
-        skipped += 1;
-        console.warn(
-          `Aviso: Strapi no permite actualizar el registro ${item.id} (HTTP 405). Se omite la actualización.`
-        );
-        continue;
-      }
-
-      const text = await response.text().catch(() => '');
-      throw new Error(
-        `Error al sincronizar Strapi (HTTP ${response.status}). ` +
-          `Verifica STRAPI_ACTIVO_DIGITAL_PATH. ${text}`
-      );
-    }
-
-    if (entryId || documentId) {
-      updated += 1;
-    } else {
-      created += 1;
     }
   }
 
@@ -249,74 +161,48 @@ async function upsertActivosDigitalesToStrapi(items) {
 
 async function deleteMissingActivosDigitales(mondayIds) {
   const { baseUrl, path, headers } = getStrapiConfig();
-  const fallbackPath = getAlternatePath(path);
 
   if (!headers.Authorization) {
-    throw new Error('Falta STRAPI_API_TOKEN para borrar en Strapi.');
+    throw new Error('STRAPI_API_TOKEN no está configurado.');
   }
 
-  const existingRows = await fetchAllStrapiEntries();
-  const mondayIdSet = new Set(mondayIds.map((id) => String(id)));
+  const existentes = await fetchAllStrapiEntries();
+  const idsMonday = new Set(mondayIds.map(String));
 
   let deleted = 0;
   let skipped = 0;
 
-  const tryDelete = async (writePath, targetId) => {
-    const endpoint = `${baseUrl}${writePath}/${targetId}`;
-    return fetch(endpoint, { method: 'DELETE', headers });
-  };
+  for (const row of existentes) {
+    const n = normalizeRow(row);
+    const id = n.id ? String(n.id) : null;
 
-  for (const row of existingRows) {
-    const normalized = normalizeRow(row);
-    const id = normalized.id ? String(normalized.id) : null;
+    // Si está en Monday, no borrar
+    if (!id || idsMonday.has(id)) continue;
 
-    if (!id || mondayIdSet.has(id)) {
+    const targetId = n.__documentId || n.__entryId;
+    if (!targetId) {
+      skipped++;
       continue;
     }
 
-    const primaryId = normalized.__documentId || normalized.__entryId;
-    const fallbackId =
-      normalized.__documentId &&
-      normalized.__entryId &&
-      normalized.__documentId !== normalized.__entryId
-        ? normalized.__entryId
-        : undefined;
-
-    if (!primaryId) {
-      skipped += 1;
-      continue;
-    }
-
-    let response = await tryDelete(path, primaryId);
-
-    if (response.status === 404 && fallbackPath) {
-      response = await tryDelete(fallbackPath, primaryId);
-    }
-
-    if (response.status === 404 && fallbackId) {
-      response = await tryDelete(path, fallbackId);
-      if (response.status === 404 && fallbackPath) {
-        response = await tryDelete(fallbackPath, fallbackId);
+    try {
+      const url = `${baseUrl}${path}/${targetId}`;
+      await hacerRequest(url, { method: 'DELETE', headers });
+      deleted++;
+    } catch (err) {
+      // Si no se puede borrar con documentId, intentar con entryId
+      if (n.__entryId && n.__documentId && n.__entryId !== n.__documentId) {
+        try {
+          const url = `${baseUrl}${path}/${n.__entryId}`;
+          await hacerRequest(url, { method: 'DELETE', headers });
+          deleted++;
+        } catch {
+          skipped++;
+        }
+      } else {
+        skipped++;
       }
     }
-
-    if (response.status === 405) {
-      skipped += 1;
-      console.warn(`Aviso: Strapi no permite borrar el registro ${id} (HTTP 405).`);
-      continue;
-    }
-
-    if (response.status === 404) {
-      skipped += 1;
-      continue;
-    }
-
-    if (!response.ok) {
-      const text = await response.text().catch(() => '');
-      throw new Error(`Error al borrar en Strapi (HTTP ${response.status}). ${text}`);
-    }
-
-    deleted += 1;
   }
 
   return { deleted, skipped };

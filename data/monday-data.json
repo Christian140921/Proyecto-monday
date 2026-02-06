@@ -1,65 +1,92 @@
 [
   {
-    "id": "11056369807",
+    "id": "11203646334",
     "nombre": "Actualización de Servidores",
     "estado": "En Progreso",
     "categoria": "Hardware, Software",
     "costo": 15000,
     "fecha": "2026-02-01",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056369807"
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11203646334"
   },
   {
-    "id": "11056374688",
+    "id": "11203646542",
     "nombre": "Auditoría de Sistemas",
     "estado": "Completado",
-    "categoria": null,
+    "categoria": "Soporte",
     "costo": 8000,
     "fecha": "2026-01-30",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374688"
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11203646542"
   },
   {
-    "id": "11056370236",
+    "id": "11203650396",
     "nombre": "Capacitación en Soporte Técnico",
     "estado": "Atascado",
     "categoria": "Soporte",
     "costo": 3000,
     "fecha": "2026-02-25",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056370236"
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11203650396"
   },
   {
-    "id": "11056374701",
+    "id": "11203650975",
     "nombre": "Instalación de Firewall",
     "estado": "Completado",
     "categoria": "Redes, Soporte",
     "costo": 5000,
     "fecha": "2026-02-15",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056374701"
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11203650975"
   },
   {
-    "id": "11056377230",
+    "id": "11203650802",
     "nombre": "Implementación de Software de Gestión",
     "estado": "No Comenzado",
     "categoria": "Software",
     "costo": 25000,
     "fecha": "2026-03-10",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11056377230"
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11203650802"
   },
   {
-    "id": "11066701267",
+    "id": "11203650427",
     "nombre": "Prueba de Integración de Red",
     "estado": "En Progreso",
     "categoria": "Infraestructura",
     "costo": 1000,
     "fecha": "2026-01-21",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11066701267"
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11203650427"
   },
   {
-    "id": "11166385658",
+    "id": "11203650600",
     "nombre": "Implementación de Plataforma de Videoconferencias",
     "estado": "Completado",
     "categoria": "Innovación",
     "costo": 1900,
     "fecha": "2026-02-02",
-    "url": "https://cristianvargas6322s-team-company.monday.com/boards/18396523890/pulses/11166385658"
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11203650600"
+  },
+  {
+    "id": "11203723293",
+    "nombre": "Nuevo registro de ejemplo",
+    "estado": "En Progreso",
+    "categoria": "Ejemplo",
+    "costo": 0,
+    "fecha": "2026-02-05",
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11203723293"
+  },
+  {
+    "id": "11204184379",
+    "nombre": "Migración de Base de Datos",
+    "estado": "En Progreso",
+    "categoria": "Infraestructura",
+    "costo": 12000,
+    "fecha": "2026-02-06",
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11204184379"
+  },
+  {
+    "id": "11204231013",
+    "nombre": "Actualización de Políticas de Seguridad",
+    "estado": "Not Started",
+    "categoria": "Seguridad",
+    "costo": 0,
+    "fecha": null,
+    "url": "https://christian110721s-team.monday.com/boards/18398967831/pulses/11204231013"
   }
 ]

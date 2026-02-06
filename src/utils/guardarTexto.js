@@ -8,7 +8,6 @@ function savePlainText(filePath, data, options = {}) {
   const title = options.title || 'DATOS';
   const columns = ['id', 'nombre', 'estado', 'categoria', 'costo', 'fecha', 'url'];
   
-  // Calcular ancho máximo para cada columna
   const colWidths = {};
   columns.forEach(col => {
     colWidths[col] = Math.max(col.length, 15);
@@ -18,15 +17,12 @@ function savePlainText(filePath, data, options = {}) {
     });
   });
 
-  // Crear separador
   const separator = '+' + columns.map(col => '-'.repeat(colWidths[col] + 2)).join('+') + '+';
   
-  // Crear header
   let content = `\n${title}\n\n${separator}\n`;
   content += '| ' + columns.map(col => col.padEnd(colWidths[col])).join(' | ') + ' |\n';
   content += separator + '\n';
 
-  // Agregar filas
   data.forEach(item => {
     const row = columns.map(col => {
       const value = String(item[col] || '').substring(0, colWidths[col]);

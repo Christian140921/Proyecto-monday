@@ -1,4 +1,4 @@
-# Monday ↔ Strapi
+# Monday - Strapi
 
 Sincroniza cambios de Monday a Strapi automáticamente. Usa n8n para traer los datos, compara con lo que hay en Strapi y actualiza/crea/borra según sea necesario. Genera un reporte local en TXT y JSON.
 
@@ -52,6 +52,15 @@ data/                     # Reportes generados
 
 Monday → n8n webhook → Node → Compara con Strapi → Crea/actualiza/borra → Guarda reporte
 
+## Configuración Monday
+
+El proyecto obtiene los datos de Monday a través del webhook de n8n (`MONDAY_DATA_URL`).
+
+Además, para que los reportes incluyan una URL clickeable al item de Monday, configura:
+
+- `MONDAY_COMPANY` (ej: `christian110721s-team`)
+- `MONDAY_BOARD_ID` (ej: `18398967831`)
+
 ## Troubleshooting
 
 **"Can't reach n8n"** - ¿Está levantado? `docker ps`
@@ -62,6 +71,6 @@ Monday → n8n webhook → Node → Compara con Strapi → Crea/actualiza/borra 
 
 ## Security
 
-⚠️ No commitees `.env` con tokens reales.
+No commitees `.env` con tokens reales.
 
 Los IDs internos se guardan solo localmente.
